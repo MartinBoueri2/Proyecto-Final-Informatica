@@ -5,7 +5,7 @@
 ## Integrantes
 - **Agustín Frías**
 - **Martín Boueri**
-- **Facundo Gómez**
+- **Maximo Gómez**
 
 ---
 
@@ -32,5 +32,4 @@ git add .
 git commit -m "Cambios en mi rama"
 git push origin agus-version
 ```
-## Nota
-🔽 Debajo de la imagen superior se explica cómo utilizar el repositorio en **VSCode** y cómo sincronizar los cambios entre los colaboradores.
+
