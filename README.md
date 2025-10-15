@@ -1,6 +1,6 @@
 # Proyecto-Final-Informatica
 
--Para usar el repositorio en VSCode-
+<img width="1024" height="1024" alt="dcc90527-a251-47b0-8dfc-55f9fced72d3" src="https://github.com/user-attachments/assets/2637d497-0ef5-4f81-80ee-f1db3b2faec7" />
 
 git init
 git remote add origin https://github.com/FacuyAnca/Proyecto-Final-Informatica
