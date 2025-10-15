@@ -12,9 +12,10 @@ temperaturas = []
 
 #Capturas
 capturasTemperatura=[]
-capturasPromedio=[]
+capturasTendencia=[]
 capturasFecha=[]
 capNum=0
+tendencia='NULA'
 
 
 # Pines
@@ -57,12 +58,15 @@ try:
         if lectura is not None and len(temperaturas) == 5:
 
             # Rangos mutuamente excluyentes (evita pisarse)
-            if temp_c < 25:
+            if temp_c<0.7*promedio :            #NO ----> temp_c < 25
                 led_verde.write(1);  led_amarillo.write(0); led_rojo.write(0)
-            elif temp_c < 200:
-                led_verde.write(0);  led_amarillo.write(1); led_rojo.write(0)
-            else:  # temp_c >= 200
+                tendencia='BAJA'
+            elif temp_c>1.3*promedio: # NO --> temp_c >= 200
                 led_verde.write(0);  led_amarillo.write(0); led_rojo.write(1)
+                tendencia='ALTA'
+            else:  #NO  --> temp_c < 200
+                led_verde.write(0);  led_amarillo.write(1); led_rojo.write(0)
+                tendencia='MEDIA'
         else:
             # Sin lectura o sin promedio
             led_verde.write(1); led_amarillo.write(1); led_rojo.write(1)
@@ -78,25 +82,35 @@ try:
 
         time.sleep(1)
 
-                #Pulsador enviende los leds por 50ms
+        #Registro de todas las mediciones
+        capturasTemperatura.append(temp_c)
+        capturasTendencia.append(tendencia)
+        capturasFecha.append(datetime.now().strftime("%d/%m/%Y %H:%M:%S"))
+
+
+        #Pulsador enviende los leds por 50ms
         if boton:
-            led_verde.write(1); led_amarillo.write(1); led_rojo.write(1)
-            time.sleep(0.05)
-            capturasTemperatura.append(temp_c)
-            capturasPromedio.append(promedio)
-            capturasFecha.append(datetime.now().strftime("%d/%m/%Y %H:%M:%S"))
-            capNum=capNum+1
+            inicio = time.time()
+            while boton:
+                boton = pulsador.read()
+                led_verde.write(1); led_amarillo.write(1); led_rojo.write(1)
+            duracion = time.time() - inicio
+            if duracion < 2: duracion = 2
+            elif duracion > 10: duracion = 10
+            led_verde.write(0); led_amarillo.write(0); led_rojo.write(0)
+            print(f"Duración: {duracion:.2f}s")
+
 
 except KeyboardInterrupt:
     print("Programa terminado.")
     print("\n=== Resumen de capturas ===")
     for i in range(len(capturasTemperatura)):
-        print(f"Captura {i+1}: {capturasTemperatura[i]:.2f}°C, Promedio: {capturasPromedio[i]:.2f}°C, Fecha: {capturasFecha[i]}")
+        print(f"Captura {i+1}: {capturasTemperatura[i]:.2f}°C, Tendencia: {capturasTendencia[i]}, Fecha: {capturasFecha[i]}")
 
     # Crear archivo y guardar datos
     with open("capturas.txt", "w", encoding="utf-8") as archivo:
         for i in range(len(capturasTemperatura)):
-            archivo.write(f"Captura {i+1}: {capturasTemperatura[i]:.2f}°C, Promedio: {capturasPromedio[i]:.2f}°C, Fecha: {capturasFecha[i]}\n")
+            archivo.write(f"Captura {i+1}: {capturasTemperatura[i]:.2f}°C, Tendencia: {capturasTendencia[i]}, Fecha: {capturasFecha[i]}\n")
     print("\nDatos guardados en 'capturas.txt'.")
 finally:
     # Apaga LEDs y cierra conexión siempre
