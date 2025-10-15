@@ -1,6 +1,5 @@
-=== Resumen de capturas ===
-Captura 1: 499.00°C, Promedio: 499.40°C, Fecha: 15/10/2025 13:44:46
-Captura 2: 500.00°C, Promedio: 499.50°C, Fecha: 15/10/2025 13:44:47
-Captura 3: 500.00°C, Promedio: 499.60°C, Fecha: 15/10/2025 13:44:48
-Captura 4: 389.55°C, Promedio: 477.61°C, Fecha: 15/10/2025 13:44:49
-Captura 5: 22.95°C, Promedio: 316.22°C, Fecha: 15/10/2025 13:44:51
+Captura 1: 21.00°C, Tendencia: NULA, Fecha: 15/10/2025 19:34:33
+Captura 2: 23.45°C, Tendencia: NULA, Fecha: 15/10/2025 19:34:34
+Captura 3: 23.45°C, Tendencia: NULA, Fecha: 15/10/2025 19:34:35
+Captura 4: 23.45°C, Tendencia: NULA, Fecha: 15/10/2025 19:34:36
+Captura 5: 23.45°C, Tendencia: NULA, Fecha: 15/10/2025 19:34:37
