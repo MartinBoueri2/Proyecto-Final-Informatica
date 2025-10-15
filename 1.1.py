@@ -1,4 +1,3 @@
-# --- CORREGIDO (con comentarios útiles) ---
 import time
 import pyfirmata
 from datetime import datetime
@@ -93,7 +92,14 @@ except KeyboardInterrupt:
     print("\n=== Resumen de capturas ===")
     for i in range(len(capturasTemperatura)):
         print(f"Captura {i+1}: {capturasTemperatura[i]:.2f}°C, Promedio: {capturasPromedio[i]:.2f}°C, Fecha: {capturasFecha[i]}")
+
+    # Crear archivo y guardar datos
+    with open("capturas.txt", "w", encoding="utf-8") as archivo:
+        for i in range(len(capturasTemperatura)):
+            archivo.write(f"Captura {i+1}: {capturasTemperatura[i]:.2f}°C, Promedio: {capturasPromedio[i]:.2f}°C, Fecha: {capturasFecha[i]}\n")
+    print("\nDatos guardados en 'capturas.txt'.")
 finally:
     # Apaga LEDs y cierra conexión siempre
     led_verde.write(0); led_amarillo.write(0); led_rojo.write(0)
     board.exit()
+
