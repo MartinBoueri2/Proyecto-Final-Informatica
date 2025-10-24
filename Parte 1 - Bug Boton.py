@@ -1,4 +1,4 @@
-# --- CORREGIDO (con comentarios útiles) ---
+# --- CORREGIDO (con comentarios útiles) ---gccdytt
 import time
 import pyfirmata
 from datetime import datetime
@@ -36,3 +36,4 @@ for _ in range(10):
 while True:
     boton = pulsador.read()   # se actualiza constantemente
     print(boton)
+
